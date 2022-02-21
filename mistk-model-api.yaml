@@ -258,6 +258,26 @@ paths:
           schema:
             $ref: "#/definitions/ServiceError"
       x-swagger-router-controller: "mistk.model.service"
+  /miniaturize:
+    post:
+      tags:
+        - "Model Instance Endpoint"
+      summary: "Miniaturize the model"
+      description: "Instructs the model instance to miniaturize."
+      operationId: "miniaturize"
+      parameters: [ ]
+      responses:
+        200:
+          description: "Returns 200 if the task was successfully submitted.\n"
+        400:
+          description: "Returns 400 if there is a task running when called.\n"
+          schema:
+            $ref: "#/definitions/ServiceError"
+        500:
+          description: "General server runtime exception"
+          schema:
+            $ref: "#/definitions/ServiceError"
+      x-swagger-router-controller: "mistk.model.service"
   /saveGenerations:
     post:
       tags:
