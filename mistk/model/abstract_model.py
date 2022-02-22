@@ -27,7 +27,7 @@ import sys
 # The model states
 _model_states = {'started', 'initializing', 'initialized', 'failed', 'loading_data',
                  'building_model', 'ready', 'pausing', 'paused', 'unpausing', 'training', 
-                 'predicting', 'generating', 'saving_model', 'saving_predictions', 'saving_generations',
+                 'predicting', 'generating', 'miniaturizing', 'saving_model', 'saving_predictions', 'saving_generations',
                  'terminating', 'terminated', 'resetting'}
 
 class AbstractModel (metaclass=ABCMeta):
@@ -50,7 +50,7 @@ class AbstractModel (metaclass=ABCMeta):
         self._machine.add_transition(trigger='initialized', source=['initializing', 'loading_data'], dest='initialized')
         self._machine.add_transition(trigger='load_data', source=['initialized', 'ready'], dest='loading_data', after='_do_load_data')
         self._machine.add_transition(trigger='build_model', source='initialized', dest='building_model', after='_do_build_model')
-        self._machine.add_transition(trigger='ready', source=['loading_data', 'building_model', 'training', 'predicting', 'saving_model', 'saving_predictions', 'resetting'], dest='ready')
+        self._machine.add_transition(trigger='ready', source=['loading_data', 'building_model', 'training', 'miniaturizing', 'predicting', 'saving_model', 'saving_predictions', 'resetting'], dest='ready')
         self._machine.add_transition(trigger='train', source='ready', dest='training', after='_do_train')
         self._machine.add_transition(trigger='pause', source=['training', 'predicting'], dest='pausing', after='_do_pause')
         self._machine.add_transition(trigger='paused', source='pausing', dest='paused')
@@ -61,6 +61,7 @@ class AbstractModel (metaclass=ABCMeta):
         self._machine.add_transition(trigger='stream_predict', source='ready', dest='predicting', after='_do_stream_predict')
         self._machine.add_transition(trigger='save_predictions', source='ready', dest='saving_predictions', after='_do_save_predictions')
         self._machine.add_transition(trigger='generate', source='ready', dest='generating', after='_do_generate')
+        self._machine.add_transition(trigger='miniaturize', source='ready', dest='miniaturizing', after='_do_miniaturize')
         self._machine.add_transition(trigger='save_generations', source='ready', dest='saving_generations', after='_do_save_generations')
         self._machine.add_transition(trigger='terminate', source=list(_model_states-{'terminating', 'terminated', 'failed'}), dest='terminating', after='_do_terminate')
         self._machine.add_transition(trigger='terminated', source='terminating', dest='terminated')
@@ -360,7 +361,7 @@ class AbstractModel (metaclass=ABCMeta):
         except Exception as ex: #pylint: disable=broad-except
             logger.exception("Error running do_load_data")
             self.fail(str(ex))    
-    
+
     @abstractmethod
     def do_load_data(self, dataset_map: dict):
         """
@@ -638,4 +639,26 @@ class AbstractModel (metaclass=ABCMeta):
         """
         Resets the model into its initial state
         """
+        pass
+
+
+class PytorchAbstractModel(AbstractModel):
+
+    def _do_miniaturize(self):
+        """
+        Executes/resumes the miniaturize activity
+        """
+        try:
+            self.do_miniaturize()
+            self.ready()
+        except Exception as ex: #pylint: disable=broad-except
+            logger.exception("Error running do_miniaturize")
+            self.fail(str(ex))
+
+    @abstractmethod
+    def do_miniaturize(self):
+        """
+        Instructs the container to miniaturize itself
+        """
+        # TODO: Miniaturize model
         pass
