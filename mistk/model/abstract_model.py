@@ -24,6 +24,7 @@ from abc import ABCMeta, abstractmethod
 from mistk.model.service import ModelInstanceEndpoint
 from mistk import logger
 import sys
+import torch
 import torch_tensorrt
 
 # The model states
@@ -662,7 +663,10 @@ class PytorchAbstractModel(AbstractModel):
         Instructs the container to miniaturize itself
         """
         logging.info(self.model)
-        self.trt_model = torch_tensorrt.compile(self.model,
-            inputs=[torch_tensorrt.Input((1, 3, 224, 224))],
-            enabled_precisions={torch_tensorrt.dtype.half}  # Run with FP16
+
+        trt_model = torch_tensorrt.compile(self.model,
+            inputs=[torch_tensorrt.Input((1, 3, 224, 224), dtype=torch.half)],
+            enabled_precisions={torch_tensorrt.dtype.float, torch_tensorrt.dtype.half}  # Run with FP16
         )
+
+        torch.jit.save(trt_model, "/export/sml-data-lake/miniature_model.ts")
