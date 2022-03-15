@@ -607,6 +607,113 @@ class ModelInstanceEndpointApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def miniaturize(self, data_path, include_half_precision, **kwargs):  # noqa: E501
+        """Miniaturize the model  # noqa: E501
+
+        Instructs the model instance to miniaturize.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.miniaturize(data_path, include_half_precision, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str data_path: A path pointing to the directory where the miniaturized model should be saved.  (required)
+        :param bool include_half_precision: Whether to attempt to reduce to half point precision format (FP16) when miniaturizing the model (required)
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.miniaturize_with_http_info(data_path, include_half_precision, **kwargs)  # noqa: E501
+        else:
+            (data) = self.miniaturize_with_http_info(data_path, include_half_precision, **kwargs)  # noqa: E501
+            return data
+
+    def miniaturize_with_http_info(self, data_path, include_half_precision, **kwargs):  # noqa: E501
+        """Miniaturize the model  # noqa: E501
+
+        Instructs the model instance to miniaturize.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.miniaturize_with_http_info(data_path, include_half_precision, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str data_path: A path pointing to the directory where the miniaturized model should be saved.  (required)
+        :param bool include_half_precision: Whether to attempt to reduce to half point precision format (FP16) when miniaturizing the model (required)
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['data_path', 'include_half_precision']  # noqa: E501
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method miniaturize" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'data_path' is set
+        if ('data_path' not in params or
+                params['data_path'] is None):
+            raise ValueError("Missing the required parameter `data_path` when calling `miniaturize`")  # noqa: E501
+        # verify the required parameter 'include_half_precision' is set
+        if ('include_half_precision' not in params or
+                params['include_half_precision'] is None):
+            raise ValueError("Missing the required parameter `include_half_precision` when calling `miniaturize`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if 'data_path' in params:
+            query_params.append(('dataPath', params['data_path']))  # noqa: E501
+        if 'include_half_precision' in params:
+            query_params.append(('includeHalfPrecision', params['include_half_precision']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/miniaturize', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=None,  # noqa: E501
+            auth_settings=auth_settings,
+            async=params.get('async'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def pause(self, **kwargs):  # noqa: E501
         """Pause the model  # noqa: E501
 

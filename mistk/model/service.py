@@ -295,15 +295,21 @@ class ModelInstanceEndpoint():
         except RuntimeError as inst:
             return ServiceError(500, str(inst)), 500
 
-    def miniaturize(self):
+    def miniaturize(self, dataPath, includeHalfPrecision):
         """
         Creates and returns a Task which kicks off a miniaturize activity
 
+        :param dataPath: The location in which to save the miniaturized model
+        :param includeHalfPrecision: Whether to attempt to reduce to half point precision format (FP16) when miniaturizing the model
         :return: The created Task object
         """
         logger.debug("Miniaturize called")
         try:
-            self.add_task(ModelInstanceTask(operation="miniaturize"))
+            task = ModelInstanceTask(
+                operation="miniaturize",
+                parameters = {"dataPath": dataPath, "includeHalfPrecision": includeHalfPrecision})
+
+            self.add_task(task)
         except RuntimeError as inst:
             return ServiceError(500, str(inst)), 500
 

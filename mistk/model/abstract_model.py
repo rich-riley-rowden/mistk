@@ -15,6 +15,7 @@
 #
 ##############################################################################
 import logging
+import os.path
 
 from transitions.extensions import LockedMachine as Machine
 from transitions import State
@@ -647,26 +648,35 @@ class AbstractModel (metaclass=ABCMeta):
 
 class PytorchAbstractModel(AbstractModel):
 
-    def _do_miniaturize(self):
+    def _do_miniaturize(self, dataPath, includeHalfPrecision):
         """
         Executes/resumes the miniaturize activity
         """
         try:
-            self.do_miniaturize()
+            self.do_miniaturize(dataPath, includeHalfPrecision)
             self.ready()
         except Exception as ex: #pylint: disable=broad-except
             logger.exception("Error running do_miniaturize")
             self.fail(str(ex))
 
-    def do_miniaturize(self):
+    def do_miniaturize(self, dataPath, includeHalfPrecision):
         """
         Instructs the container to miniaturize itself
         """
-        logging.info(self.model)
+        logging.info("Miniaturizing model and saving to: {}".format(dataPath))
+
+        assert os.path.isdir(dataPath), "{} is not a directory.".format(dataPath)
+        assert self.model is not None, "self.model is None"
+        assert self.input_shape is not None, "self.input_shape is None"
+
+        if includeHalfPrecision:
+            enabled_precisions = {torch_tensorrt.dtype.float, torch_tensorrt.dtype.half}
+        else:
+            enabled_precisions = {torch_tensorrt.dtype.float}
 
         trt_model = torch_tensorrt.compile(self.model,
-            inputs=[torch_tensorrt.Input((1, 3, 224, 224), dtype=torch.half)],
-            enabled_precisions={torch_tensorrt.dtype.float, torch_tensorrt.dtype.half}  # Run with FP16
+            inputs=[torch_tensorrt.Input((1, *self.input_shape), dtype=torch.half)],
+            enabled_precisions=enabled_precisions
         )
 
-        torch.jit.save(trt_model, "/export/sml-data-lake/miniature_model.ts")
+        torch.jit.save(trt_model, dataPath)
