@@ -323,7 +323,10 @@ class ModelInstanceEndpoint():
 
         :param dataPath: The location in which to save the miniaturized model
         :param includeHalfPrecision: Whether to attempt to reduce to half point precision format (FP16) when miniaturizing the model
+<<<<<<< HEAD
 
+=======
+>>>>>>> 313f2a9 (Alter miniaturize path to allow user to pass in params)
         :return: The created Task object
         """
         logger.debug("Miniaturize called")
