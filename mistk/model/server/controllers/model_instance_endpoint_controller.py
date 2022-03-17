@@ -85,6 +85,21 @@ def load_data(datasets):  # noqa: E501
     return 'do some magic!'
 
 
+def miniaturize(dataPath, includeHalfPrecision):  # noqa: E501
+    """Miniaturize the model
+
+    Instructs the model instance to miniaturize. # noqa: E501
+
+    :param dataPath: A path pointing to the directory where the miniaturized model should be saved. 
+    :type dataPath: str
+    :param includeHalfPrecision: Whether to attempt to reduce to half point precision format (FP16) when miniaturizing the model
+    :type includeHalfPrecision: bool
+
+    :rtype: None
+    """
+    return 'do some magic!'
+
+
 def pause():  # noqa: E501
     """Pause the model
 

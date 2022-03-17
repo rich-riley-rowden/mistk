@@ -57,7 +57,7 @@ class TestModelInstanceEndpointController(BaseTestCase):
 
         Get the status of the model
         """
-        query_string = [('watch', False),
+        query_string = [('watch', false),
                         ('resourceVersion', 56)]
         response = self.client.open(
             '/v1/mistk/status',
@@ -92,6 +92,21 @@ class TestModelInstanceEndpointController(BaseTestCase):
             method='POST',
             data=json.dumps(datasets),
             content_type='application/json')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+    def test_miniaturize(self):
+        """Test case for miniaturize
+
+        Miniaturize the model
+        """
+        query_string = [('dataPath', 'dataPath_example'),
+                        ('includeHalfPrecision', false)]
+        response = self.client.open(
+            '/v1/mistk/miniaturize',
+            method='POST',
+            content_type='application/json',
+            query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

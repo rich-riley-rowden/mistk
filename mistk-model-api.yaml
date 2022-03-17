@@ -265,7 +265,18 @@ paths:
       summary: "Miniaturize the model"
       description: "Instructs the model instance to miniaturize."
       operationId: "miniaturize"
-      parameters: [ ]
+      parameters:
+        - name: "dataPath"
+          in: "query"
+          description: "A path pointing to the directory where the miniaturized model should be saved.\n"
+          required: true
+          type: "string"
+        - name: "includeHalfPrecision"
+          in: "query"
+          description: "Whether to attempt to reduce to half point precision format (FP16) when miniaturizing the model"
+          required: true
+          type: "boolean"
+          default: false
       responses:
         200:
           description: "Returns 200 if the task was successfully submitted.\n"
