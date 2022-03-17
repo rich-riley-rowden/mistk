@@ -680,3 +680,28 @@ class PytorchAbstractModel(AbstractModel):
         )
 
         torch.jit.save(trt_model, dataPath)
+
+    def _do_save_ptmodel(self, path):
+        """
+        Save the model to an agreed upon location. It will be up to some other process to make sure
+        the saved model ends up back in the repository. This call could be a NOOP if, for instance,
+        the model is saved periodically throughout the training process.
+
+        :param path: The path to which the model should be saved.
+        """
+        try:
+            self.do_save_ptmodel(path)
+            self.ready()
+        except Exception as ex:  # pylint: disable=broad-except
+            logger.exception("Error running do_save_ptmodel")
+            self.fail(str(ex))
+
+    def do_save_ptmodel(self, path):
+        """
+        Save the model to an agreed upon location. It will be up to some other process to make sure
+        the saved model ends up back in the repository. This call could be a NOOP if, for instance,
+        the model is saved periodically throughout the training process.
+
+        :param path: The path to which the model should be saved.
+        """
+        torch.save(self.model, path)
