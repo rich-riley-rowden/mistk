@@ -289,6 +289,31 @@ paths:
           schema:
             $ref: "#/definitions/ServiceError"
       x-swagger-router-controller: "mistk.model.service"
+  /save_ptmodel:
+    post:
+      tags:
+        - "Model Instance Endpoint"
+      summary: "Save the model to a specific path"
+      description: "Instructs the model instance to save a model to the specified path."
+      operationId: "save_ptmodel"
+      parameters:
+        - name: "modelPath"
+          in: "query"
+          description: "A path pointing to the directory where the model should be saved.\n"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Returns 200 if the task was successfully submitted.\n"
+        400:
+          description: "Returns 400 if there is a task running when called.\n"
+          schema:
+            $ref: "#/definitions/ServiceError"
+        500:
+          description: "General server runtime exception"
+          schema:
+            $ref: "#/definitions/ServiceError"
+      x-swagger-router-controller: "mistk.model.service"
   /saveGenerations:
     post:
       tags:
