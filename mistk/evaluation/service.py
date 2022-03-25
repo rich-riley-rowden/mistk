@@ -327,6 +327,43 @@ class EvaluationPluginEndpoint():
             return ServiceError(500, msg), 500
         
         self.add_task(task)
+
+
+    def evaluate_multiple(self, initParams):  # noqa: E501
+        """
+        Performs the evaluation defined for this plugin
+
+        :param initParams: Init Parameters for the evaluation. Based on EvaluationSpecificationInitParams specification
+        :type initParams: dict | bytes
+
+        :rtype: None
+        """
+        logger.debug("multiple dataset evaluation called")
+
+        try:
+            if not isinstance(initParams, EvaluationSpecificationInitParams) and cx.request.is_json:
+                initParams = mistk.data.utils.deserialize_model(cx.request.get_json(),
+                                                                EvaluationSpecificationInitParams)
+            assert isinstance(initParams, EvaluationSpecificationInitParams)
+
+            task = EvaluationPluginTask(operation='evaluate_multiple',
+                                        parameters={"ground_truth_paths": initParams.ground_truth_paths,
+                                                    "input_data_paths": initParams.input_data_paths,
+                                                    "evaluation_input_format": initParams.evaluation_input_format,
+                                                    "evaluation_path": initParams.evaluation_path,
+                                                    "assessment_type": initParams.assessment_type,
+                                                    "metrics": initParams.metrics,
+                                                    "properties": initParams.properties})
+        except RuntimeError as inst:
+            msg = "Runtime Error while performing evaluation for plugin: %s" % str(inst)
+            logger.exception(msg)
+            return ServiceError(500, msg), 500
+        except Exception as ex:
+            msg = "Exception while performing evaluation for plugin: %s" % str(ex)
+            logger.exception(msg)
+            return ServiceError(500, msg), 500
+
+        self.add_task(task)
         
     def get_metrics(self):
         """

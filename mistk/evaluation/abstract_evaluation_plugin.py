@@ -26,7 +26,7 @@ from mistk import logger
 
 # The model states
 _evaluation_states = {'started', 'ready', 'failed', 
-                  'evaluating','terminating', 'terminated'}
+                  'evaluating', 'evaluating_multiple', 'terminating', 'terminated'}
 
 
 class AbstractEvaluationPlugin (metaclass=ABCMeta):
@@ -46,8 +46,9 @@ class AbstractEvaluationPlugin (metaclass=ABCMeta):
         states = [State(n, on_enter='new_state_entered') for n in _evaluation_states]
         self._machine = Machine(model=self, states=states, initial='started', auto_transitions=False)
         self._machine.add_transition(trigger='fail', source=list(_evaluation_states-{'terminated'}), dest='failed')
-        self._machine.add_transition(trigger='ready', source=['started', 'evaluating'], dest='ready')
+        self._machine.add_transition(trigger='ready', source=['started', 'evaluating', 'evaluating_multiple'], dest='ready')
         self._machine.add_transition(trigger='evaluate', source=['started', 'ready'], dest='evaluating', after='_do_evaluate')
+        self._machine.add_transition(trigger='evaluate_multiple', source=['started', 'ready'], dest='evaluating', after='_do_evaluate_multiple')
         self._machine.add_transition(trigger='terminate', source=list(_evaluation_states-{'terminating', 'terminated', 'failed'}), dest='terminating', after='_do_terminate')
         self._machine.add_transition(trigger='terminated', source='terminating', dest='terminated')
     
@@ -224,5 +225,51 @@ class AbstractEvaluationPlugin (metaclass=ABCMeta):
     :param properties: A dictionary of key value pairs for evaluation plugin arguments. 
     """
         pass
-    
-    
+
+
+class SMLAbstractEvaluationPlugin(AbstractEvaluationPlugin):
+
+    def _do_evaluate_multiple(self, assessment_type, metrics, input_data_paths, evaluation_input_format, ground_truth_paths,
+                     evaluation_path, properties):
+        """
+    Performs metrics' evaluation using the predictions and ground truth files provided.
+    Stored the assessment results as a JSON file in the evaluation_path
+
+    :param assessment_type: The evaluation type. One of {'BinaryClassification',
+        'MultilabelClassification', 'MulticlassClassification', 'Regression'}
+    :param metrics: Specific metrics to evaluate against instead of all metrics defined by assessment_type
+    :param input_data_paths: list of paths to input data for the evaluation
+    :param evaluation_input_format: The format of the input data
+    :param ground_truth_paths: List of paths to ground truth csvs for the evaluation
+    :param evaluation_path: A directory path to where the evaluation.json output file will be stored
+    :param properties: A dictionary of key value pairs for evaluation plugin arguments.
+    """
+
+        logger.debug("_do_evaluate_multiple started")
+        try:
+            logger.info("Calling do_evaluate_multiple method.")
+            self.do_evaluate_multiple(assessment_type, metrics, input_data_paths, evaluation_input_format, ground_truth_paths,
+                             evaluation_path, properties)
+            self.ready()
+        except Exception as ex:  # pylint: disable=broad-except
+            logger.exception("Error running do_evaluate_multiple")
+            self.fail(str(ex))
+        logger.debug("_do_evaluate_multiple complete")
+
+    @abstractmethod
+    def do_evaluate_multiple(self, assessment_type, metrics, input_data_paths, evaluation_input_format, ground_truth_paths,
+                    evaluation_path, properties):  # noqa: E501
+        """
+    Performs metrics' evaluation using the predictions and ground truth files provided.
+    Stored the assessment results as a JSON file in the evaluation_path
+
+    :param assessment_type: The evaluation type. One of {'BinaryClassification',
+        'MultilabelClassification', 'MulticlassClassification', 'Regression'}
+    :param metrics: Specific metrics to evaluate against instead of all metrics defined by assessment_type
+    :param input_data_paths: list of paths to input data for the evaluation
+    :param evaluation_input_format: The format of the input data
+    :param ground_truth_paths: List of paths to ground truth csvs for the evaluation
+    :param evaluation_path: A directory path to where the evaluation.json output file will be stored
+    :param properties: A dictionary of key value pairs for evaluation plugin arguments.
+    """
+        pass

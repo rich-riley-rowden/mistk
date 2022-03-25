@@ -37,6 +37,32 @@ paths:
           schema:
             $ref: "#/definitions/ServiceError"
       x-swagger-router-controller: "mistk.evaluation.service"
+  /evaluate_multiple:
+    post:
+      tags:
+        - "Multiple Datasets Evaluation Plugin Endpoint"
+      summary: "Performs the multiple dataset evaluation defined for this plugin"
+      operationId: "evaluate_multiple"
+      parameters:
+        - in: "body"
+          name: "initParams"
+          description: "A list of metrics to run and list of ground truth and prediction files\
+          \ paths to run the metrics against"
+          required: true
+          schema:
+            $ref: "#/definitions/EvaluationSpecificationInitParams"
+      responses:
+        200:
+          description: "Executing multiple dataset evaluation"
+        405:
+          description: "Invalid input"
+          schema:
+            $ref: "#/definitions/ServiceError"
+        500:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/ServiceError"
+      x-swagger-router-controller: "mistk.evaluation.service"
   /metrics:
     get:
       tags:
