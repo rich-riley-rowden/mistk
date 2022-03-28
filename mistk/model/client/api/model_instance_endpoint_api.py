@@ -38,18 +38,18 @@ class ModelInstanceEndpointApi(object):
 
         Instructs the container to construct the model  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.build_model(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.build_model(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str model_path: The absolute path to the directory where the model's checkpoint/snapshot file can be found.  
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.build_model_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.build_model_with_http_info(**kwargs)  # noqa: E501
@@ -60,11 +60,11 @@ class ModelInstanceEndpointApi(object):
 
         Instructs the container to construct the model  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.build_model_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.build_model_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str model_path: The absolute path to the directory where the model's checkpoint/snapshot file can be found.  
         :return: None
                  If the method is called asynchronously,
@@ -72,7 +72,7 @@ class ModelInstanceEndpointApi(object):
         """
 
         all_params = ['model_path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -122,7 +122,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -133,17 +133,17 @@ class ModelInstanceEndpointApi(object):
 
         Perform generations with the model  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.generate(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.generate(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.generate_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.generate_with_http_info(**kwargs)  # noqa: E501
@@ -154,18 +154,18 @@ class ModelInstanceEndpointApi(object):
 
         Perform generations with the model  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.generate_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.generate_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -213,7 +213,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -224,17 +224,17 @@ class ModelInstanceEndpointApi(object):
 
         Returns the version of the MISTK API  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_api_version(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_api_version(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.get_api_version_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_api_version_with_http_info(**kwargs)  # noqa: E501
@@ -245,18 +245,18 @@ class ModelInstanceEndpointApi(object):
 
         Returns the version of the MISTK API  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_api_version_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_api_version_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -304,7 +304,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -315,11 +315,11 @@ class ModelInstanceEndpointApi(object):
 
         Retrieves the current status of the model  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_status(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_status(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param bool watch: Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. 
         :param int resource_version: When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. 
         :return: ModelInstanceStatus
@@ -327,7 +327,7 @@ class ModelInstanceEndpointApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.get_status_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_status_with_http_info(**kwargs)  # noqa: E501
@@ -338,11 +338,11 @@ class ModelInstanceEndpointApi(object):
 
         Retrieves the current status of the model  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_status_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_status_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param bool watch: Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. 
         :param int resource_version: When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. 
         :return: ModelInstanceStatus
@@ -351,7 +351,7 @@ class ModelInstanceEndpointApi(object):
         """
 
         all_params = ['watch', 'resource_version']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -403,7 +403,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type='ModelInstanceStatus',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -414,18 +414,18 @@ class ModelInstanceEndpointApi(object):
 
         Instructs the model instance to initialize.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.initialize_model(initialization_parameters, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.initialize_model(initialization_parameters, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param ModelInstanceInitParams initialization_parameters: Initialization parameters for the model including the objectives, properties, and hparams. Objectives are a list of objectives for this model instance from the following options  {train, predict, stream_predict, generate, transfer_learning}. Properties are a dictionary of properties for this model instance.  Hparams are a dictionary of hyperparameters for this model instance.  (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.initialize_model_with_http_info(initialization_parameters, **kwargs)  # noqa: E501
         else:
             (data) = self.initialize_model_with_http_info(initialization_parameters, **kwargs)  # noqa: E501
@@ -436,11 +436,11 @@ class ModelInstanceEndpointApi(object):
 
         Instructs the model instance to initialize.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.initialize_model_with_http_info(initialization_parameters, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.initialize_model_with_http_info(initialization_parameters, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param ModelInstanceInitParams initialization_parameters: Initialization parameters for the model including the objectives, properties, and hparams. Objectives are a list of objectives for this model instance from the following options  {train, predict, stream_predict, generate, transfer_learning}. Properties are a dictionary of properties for this model instance.  Hparams are a dictionary of hyperparameters for this model instance.  (required)
         :return: None
                  If the method is called asynchronously,
@@ -448,7 +448,7 @@ class ModelInstanceEndpointApi(object):
         """
 
         all_params = ['initialization_parameters']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -502,7 +502,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -513,18 +513,18 @@ class ModelInstanceEndpointApi(object):
 
         Loads data onto a staging area for use by the model  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.load_data(datasets, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.load_data(datasets, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param object datasets: A dictionary mapping objectives to MistkDataset objects.  Dictionary keys must be one of the following {train, test, generate}  (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.load_data_with_http_info(datasets, **kwargs)  # noqa: E501
         else:
             (data) = self.load_data_with_http_info(datasets, **kwargs)  # noqa: E501
@@ -535,11 +535,11 @@ class ModelInstanceEndpointApi(object):
 
         Loads data onto a staging area for use by the model  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.load_data_with_http_info(datasets, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.load_data_with_http_info(datasets, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param object datasets: A dictionary mapping objectives to MistkDataset objects.  Dictionary keys must be one of the following {train, test, generate}  (required)
         :return: None
                  If the method is called asynchronously,
@@ -547,7 +547,7 @@ class ModelInstanceEndpointApi(object):
         """
 
         all_params = ['datasets']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -601,7 +601,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -612,11 +612,11 @@ class ModelInstanceEndpointApi(object):
 
         Instructs the model instance to miniaturize.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.miniaturize(data_path, include_half_precision, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.miniaturize(data_path, include_half_precision, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str data_path: A path pointing to the directory where the miniaturized model should be saved.  (required)
         :param bool include_half_precision: Whether to attempt to reduce to half point precision format (FP16) when miniaturizing the model (required)
         :return: None
@@ -624,7 +624,7 @@ class ModelInstanceEndpointApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.miniaturize_with_http_info(data_path, include_half_precision, **kwargs)  # noqa: E501
         else:
             (data) = self.miniaturize_with_http_info(data_path, include_half_precision, **kwargs)  # noqa: E501
@@ -635,11 +635,11 @@ class ModelInstanceEndpointApi(object):
 
         Instructs the model instance to miniaturize.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.miniaturize_with_http_info(data_path, include_half_precision, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.miniaturize_with_http_info(data_path, include_half_precision, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str data_path: A path pointing to the directory where the miniaturized model should be saved.  (required)
         :param bool include_half_precision: Whether to attempt to reduce to half point precision format (FP16) when miniaturizing the model (required)
         :return: None
@@ -648,7 +648,7 @@ class ModelInstanceEndpointApi(object):
         """
 
         all_params = ['data_path', 'include_half_precision']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -708,7 +708,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -719,17 +719,17 @@ class ModelInstanceEndpointApi(object):
 
         Instructs the container to pause the current training or  prediction activity   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.pause(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.pause(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.pause_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.pause_with_http_info(**kwargs)  # noqa: E501
@@ -740,18 +740,18 @@ class ModelInstanceEndpointApi(object):
 
         Instructs the container to pause the current training or  prediction activity   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.pause_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.pause_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -799,7 +799,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -810,17 +810,17 @@ class ModelInstanceEndpointApi(object):
 
         Perform predictions with the test dataset previously loaded  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.predict(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.predict(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.predict_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.predict_with_http_info(**kwargs)  # noqa: E501
@@ -831,18 +831,18 @@ class ModelInstanceEndpointApi(object):
 
         Perform predictions with the test dataset previously loaded  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.predict_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.predict_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -890,7 +890,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -901,17 +901,17 @@ class ModelInstanceEndpointApi(object):
 
         Resets the model  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.reset(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.reset(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.reset_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.reset_with_http_info(**kwargs)  # noqa: E501
@@ -922,18 +922,18 @@ class ModelInstanceEndpointApi(object):
 
         Resets the model  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.reset_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.reset_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -981,7 +981,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -992,17 +992,17 @@ class ModelInstanceEndpointApi(object):
 
         Resumes the training activity   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.resume_predict(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.resume_predict(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.resume_predict_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.resume_predict_with_http_info(**kwargs)  # noqa: E501
@@ -1013,18 +1013,18 @@ class ModelInstanceEndpointApi(object):
 
         Resumes the training activity   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.resume_predict_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.resume_predict_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1072,7 +1072,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1083,17 +1083,17 @@ class ModelInstanceEndpointApi(object):
 
         Resumes the training activity   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.resume_training(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.resume_training(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.resume_training_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.resume_training_with_http_info(**kwargs)  # noqa: E501
@@ -1104,18 +1104,18 @@ class ModelInstanceEndpointApi(object):
 
         Resumes the training activity   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.resume_training_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.resume_training_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1163,7 +1163,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1174,18 +1174,18 @@ class ModelInstanceEndpointApi(object):
 
         Instructs the container to save the generations to the specified path   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.save_generations(data_path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.save_generations(data_path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str data_path: A path pointing to the directory where the generations are to be saved.  (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.save_generations_with_http_info(data_path, **kwargs)  # noqa: E501
         else:
             (data) = self.save_generations_with_http_info(data_path, **kwargs)  # noqa: E501
@@ -1196,11 +1196,11 @@ class ModelInstanceEndpointApi(object):
 
         Instructs the container to save the generations to the specified path   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.save_generations_with_http_info(data_path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.save_generations_with_http_info(data_path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str data_path: A path pointing to the directory where the generations are to be saved.  (required)
         :return: None
                  If the method is called asynchronously,
@@ -1208,7 +1208,7 @@ class ModelInstanceEndpointApi(object):
         """
 
         all_params = ['data_path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1262,7 +1262,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1273,18 +1273,18 @@ class ModelInstanceEndpointApi(object):
 
         Instructs the container to serialize the model to the specified path   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.save_model(model_path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.save_model(model_path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str model_path: A path pointing to the directory where the model is to be saved.  (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.save_model_with_http_info(model_path, **kwargs)  # noqa: E501
         else:
             (data) = self.save_model_with_http_info(model_path, **kwargs)  # noqa: E501
@@ -1295,11 +1295,11 @@ class ModelInstanceEndpointApi(object):
 
         Instructs the container to serialize the model to the specified path   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.save_model_with_http_info(model_path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.save_model_with_http_info(model_path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str model_path: A path pointing to the directory where the model is to be saved.  (required)
         :return: None
                  If the method is called asynchronously,
@@ -1307,7 +1307,7 @@ class ModelInstanceEndpointApi(object):
         """
 
         all_params = ['model_path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1361,7 +1361,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1372,18 +1372,18 @@ class ModelInstanceEndpointApi(object):
 
         Instructs the container to save the predictions to the specified path   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.save_predictions(data_path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.save_predictions(data_path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str data_path: A path pointing to the directory where the predictions are to be saved.  (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.save_predictions_with_http_info(data_path, **kwargs)  # noqa: E501
         else:
             (data) = self.save_predictions_with_http_info(data_path, **kwargs)  # noqa: E501
@@ -1394,11 +1394,11 @@ class ModelInstanceEndpointApi(object):
 
         Instructs the container to save the predictions to the specified path   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.save_predictions_with_http_info(data_path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.save_predictions_with_http_info(data_path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str data_path: A path pointing to the directory where the predictions are to be saved.  (required)
         :return: None
                  If the method is called asynchronously,
@@ -1406,7 +1406,7 @@ class ModelInstanceEndpointApi(object):
         """
 
         all_params = ['data_path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1460,7 +1460,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1471,18 +1471,19 @@ class ModelInstanceEndpointApi(object):
 
         Perform predictions with the test dataset previously loaded  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.stream_predict(data_map, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.stream_predict(data_map, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
-        :param object data_map: Dictionary of IDs to b64 encoded data (required)
+        :param async_req bool
+        :param str data_map: Dictionary of IDs to b64 encoded data (required)
+        :param bool details: Optional parameter for the model to provide additional details in the returned dict. Default value is False.
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.stream_predict_with_http_info(data_map, **kwargs)  # noqa: E501
         else:
             (data) = self.stream_predict_with_http_info(data_map, **kwargs)  # noqa: E501
@@ -1493,19 +1494,20 @@ class ModelInstanceEndpointApi(object):
 
         Perform predictions with the test dataset previously loaded  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.stream_predict_with_http_info(data_map, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.stream_predict_with_http_info(data_map, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
-        :param object data_map: Dictionary of IDs to b64 encoded data (required)
+        :param async_req bool
+        :param str data_map: Dictionary of IDs to b64 encoded data (required)
+        :param bool details: Optional parameter for the model to provide additional details in the returned dict. Default value is False.
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['data_map']  # noqa: E501
-        all_params.append('async')
+        all_params = ['data_map', 'details']  # noqa: E501
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1529,6 +1531,10 @@ class ModelInstanceEndpointApi(object):
         path_params = {}
 
         query_params = []
+        if 'data_map' in params:
+            query_params.append(('dataMap', params['data_map']))  # noqa: E501
+        if 'details' in params:
+            query_params.append(('details', params['details']))  # noqa: E501
 
         header_params = {}
 
@@ -1536,8 +1542,6 @@ class ModelInstanceEndpointApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'data_map' in params:
-            body_params = params['data_map']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -1559,7 +1563,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type='object',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1570,17 +1574,17 @@ class ModelInstanceEndpointApi(object):
 
         Shuts down the model  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.terminate(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.terminate(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.terminate_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.terminate_with_http_info(**kwargs)  # noqa: E501
@@ -1591,18 +1595,18 @@ class ModelInstanceEndpointApi(object):
 
         Shuts down the model  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.terminate_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.terminate_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1650,7 +1654,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1661,17 +1665,17 @@ class ModelInstanceEndpointApi(object):
 
         Trains the model with the training dataset previously loaded  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.train(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.train(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.train_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.train_with_http_info(**kwargs)  # noqa: E501
@@ -1682,18 +1686,18 @@ class ModelInstanceEndpointApi(object):
 
         Trains the model with the training dataset previously loaded  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.train_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.train_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1741,7 +1745,7 @@ class ModelInstanceEndpointApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),

@@ -194,13 +194,15 @@ def save_predictions(dataPath):  # noqa: E501
     return 'do some magic!'
 
 
-def stream_predict(dataMap):  # noqa: E501
+def stream_predict(dataMap, details=None):  # noqa: E501
     """Perform streaming predictions with the model
 
     Perform predictions with the test dataset previously loaded # noqa: E501
 
     :param dataMap: Dictionary of IDs to b64 encoded data
-    :type dataMap: 
+    :type dataMap: str
+    :param details: Optional parameter for the model to provide additional details in the returned dict. Default value is False.
+    :type details: bool
 
     :rtype: object
     """

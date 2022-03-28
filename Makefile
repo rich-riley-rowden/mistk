@@ -1,6 +1,6 @@
 NAME:=mistk
 
-include ../utils/common.mk
+include common.mk
 
 ifndef DOT
 	OUTPUT_BASE_DIR:=/$(NAMESPACE)/$(FULLNAME)

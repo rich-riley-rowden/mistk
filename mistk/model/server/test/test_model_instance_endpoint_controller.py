@@ -217,12 +217,13 @@ class TestModelInstanceEndpointController(BaseTestCase):
 
         Perform streaming predictions with the model
         """
-        dataMap = None
+        query_string = [('dataMap', 'dataMap_example'),
+                        ('details', false)]
         response = self.client.open(
             '/v1/mistk/streamPredict',
             method='POST',
-            data=json.dumps(dataMap),
-            content_type='application/json')
+            content_type='application/json',
+            query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

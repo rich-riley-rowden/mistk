@@ -188,14 +188,17 @@ paths:
       description: "Perform predictions with the test dataset previously loaded"
       operationId: "stream_predict"
       parameters:
-      - in: "body"
-        name: "dataMap"
-        description: "Dictionary of IDs to b64 encoded data"
-        required: true
-        schema:
-          type: "object"
-          additionalProperties:
-            type: "string"
+        - name: "dataMap"
+          in: "query"
+          description: "Dictionary of IDs to b64 encoded data"
+          required: true
+          type: "string"
+        - name: "details"
+          in: "query"
+          description: "Optional parameter for the model to provide additional details in the returned dict. Default value is False."
+          required: false
+          type: "boolean"
+          default: false
       responses:
         200:
           description: "Dictionary of IDs to predictions"
