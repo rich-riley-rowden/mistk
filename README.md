@@ -31,4 +31,11 @@ Verify that mistk is now installed on PYTHON PATH by running::
 
     >>> import mistk
 
+### Running the docker image
+
+docker build -f Dockerfile.ec2_full_model . -t ec2-full-model
+docker run -p 8080:8080 -v /address/of/data/lake:/opt/project ec2-full-model 
+
+when saving the model with /save_pt_model, save to address of the data lake
+
 See full [MISTK Documentation](https://mistkml.github.io/) for detailed installation instructions and to get started with the toolkit.
