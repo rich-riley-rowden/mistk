@@ -717,7 +717,6 @@ class PytorchAbstractModel(AbstractModel):
         """
         logging.info("Miniaturizing model and saving to: {}".format(dataPath))
 
-        assert os.path.isdir(dataPath), "{} is not a directory.".format(dataPath)
         assert self.model is not None, "self.model is None"
         assert self.input_shape is not None, "self.input_shape is None"
 
@@ -726,9 +725,11 @@ class PytorchAbstractModel(AbstractModel):
         else:
             enabled_precisions = {torch_tensorrt.dtype.float}
 
-        trt_model = torch_tensorrt.compile(self.model,
-            inputs=[torch_tensorrt.Input((1, *self.input_shape), dtype=torch.half)],
-            enabled_precisions=enabled_precisions
-        )
+        traced_model = torch.jit.trace(self.model, [torch.randn(1, 3, *self.input_shape).to("cuda")])
+        trt_model = torch_tensorrt.compile(traced_model, **{
+            "inputs": [torch_tensorrt.Input((self.batch_size, 3, *self.input_shape))],
+            "enabled_precisions": enabled_precisions,
+            "workspace_size": 1 << 20
+        })
 
         torch.jit.save(trt_model, dataPath)
